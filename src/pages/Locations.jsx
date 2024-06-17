@@ -1,33 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import getByAxios from "../api/byAxios";
 
 const Locations = () => {
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  const instance = axios.create({
-    baseURL: "https://rickandmortyapi.com/api/",
-  });
-
-  const getLocations = async () => {
-    try {
-      const response = await instance("location");
-      if (response.status !== 200) {
-      } else {
-        setLocations(response.data.results);
-        setLoading(false);
-      }
-    } catch (e) {
-      setIsError(true);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    getLocations();
+    getByAxios("location", setLocations, setIsError, setLoading);
   }, []);
 
   return (

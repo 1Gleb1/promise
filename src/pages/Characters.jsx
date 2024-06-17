@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
+import getByNativeFetch from "../api/byNativeFetch";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
@@ -7,21 +8,7 @@ const Characters = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character")
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          setIsError(true);
-        }
-      })
-      .then((data) => {
-        setCharacters(data.results);
-        setLoading(false);
-      })
-      .catch((e) => {
-        setIsError(true);
-      });
+    getByNativeFetch("character", setCharacters, setIsError, setLoading);
   }, []);
 
   return (

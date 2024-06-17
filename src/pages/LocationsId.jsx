@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import getByAxios from "../api/byAxios";
 
 const LocationsId = () => {
   const [location, setLocation] = useState({});
@@ -39,22 +39,8 @@ const LocationsId = () => {
     }
   };
 
-  const getLocations = async () => {
-    try {
-      const response = await instance(`location/${id.id}`);
-      if (response.status !== 200) {
-      } else {
-        setLocation(response.data);
-        setLoading(false);
-      }
-    } catch (e) {
-      setIsError(true);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    getLocations();
+    getByAxios(`location/${id.id}`, setLocation, setIsError, setLoading, true);
   }, []);
 
   return (
@@ -66,17 +52,17 @@ const LocationsId = () => {
           <input
             value={locationName}
             onChange={(e) => setLocationName(e.target.value)}
-            placeholder={`${location.name}`}
+            placeholder={`${location?.name}`}
           />
           <input
             value={locationDimension}
             onChange={(e) => setLocationDimension(e.target.value)}
-            placeholder={`${location.dimension}`}
+            placeholder={`${location?.dimension}`}
           />
           <input
             value={locationType}
             onChange={(e) => setLocationType(e.target.value)}
-            placeholder={`${location.type}`}
+            placeholder={`${location?.type}`}
           />
           <button onClick={() => updateLocation()}>Обновить</button>
           <button onClick={() => deleteLocation()}>Удалить</button>
