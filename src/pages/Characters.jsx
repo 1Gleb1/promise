@@ -7,6 +7,10 @@ const Characters = () => {
   const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
+  // const charactersAtom = atom([]);
+  // const [characters, setCharacters] = useAtom(charactersAtom);
+  // console.log(useAtomValue(themeAtom));
+
   useEffect(() => {
     getByNativeFetch("character", setCharacters, setIsError, setLoading);
   }, []);

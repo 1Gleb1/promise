@@ -11,8 +11,8 @@ async function getByAxios(url, setData, setError, setLoading, id) {
       setError(true);
       setLoading(false);
     } else {
-      setData(id ? response.data : response.data.results);
       setLoading(false);
+      setData(id ? response.data : response.data.results);
     }
   } catch (e) {
     setError(true);
