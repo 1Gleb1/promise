@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import getByNativeFetch from "../api/byNativeFetch";
 import { atom, useAtom } from "jotai";
-import { useAtomValue } from "jotai/react";
+import { useAtomValue, useSetAtom } from "jotai/react";
 
 const loadingAtom = atom(true);
 const isErrorAtom = atom(false);
@@ -15,7 +15,7 @@ const Characters = () => {
   const [loading, setLoading] = useAtom(loadingAtom);
 
   const isError = useAtomValue(isErrorAtom);
-  const setIsError = useAtomValue(isErrorAtom);
+  const setIsError = useSetAtom(isErrorAtom);
 
   useEffect(() => {
     getByNativeFetch("character", setCharacters, setIsError, setLoading);
