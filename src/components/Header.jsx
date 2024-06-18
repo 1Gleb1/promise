@@ -19,6 +19,12 @@ const Header = () => {
         width: "500px",
         margin: "0 auto",
         marginBottom: "30px",
+        padding: "20px",
+        backgroundColor: theme === "light" ? "white" : "rgba(0, 0, 0, 0.5)",
+        color: theme === "light" ? "black" : "white",
+        boxShadow: theme === "light" ? "0 0 10px black" : "0 0 10px black",
+        borderRadius: "10px",
+        boxSizing: "border-box",
       }}
     >
       <div
@@ -27,9 +33,24 @@ const Header = () => {
           justifyContent: "space-between",
         }}
       >
-        <Link to="/characters">Character</Link>
-        <Link to="/episodes">Episode</Link>
-        <Link to="/locations">Location</Link>
+        <Link
+          style={{ color: theme === "light" ? "black" : "white" }}
+          to="/characters"
+        >
+          Character
+        </Link>
+        <Link
+          style={{ color: theme === "light" ? "black" : "white" }}
+          to="/episodes"
+        >
+          Episode
+        </Link>
+        <Link
+          style={{ color: theme === "light" ? "black" : "white" }}
+          to="/locations"
+        >
+          Location
+        </Link>
         <main>
           <p>Theme is {theme}</p>
 
